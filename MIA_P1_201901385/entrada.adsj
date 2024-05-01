@@ -1,0 +1,54 @@
+#ENTRADA PRIMER PARTE MIA
+#Seccion B - DANIEL CHICAS
+#1S 2024
+#CAMBIAR /home/daniel -> POR SU USUARIO EJ ->  /home/SU_USER
+#CAMBIAR LOS IDS
+#nvm install node
+
+
+#CREACION DE DISCOS---------------------------------------------------
+Mkdisk -size=60 -unit=M -fit=FF                   # 60M A
+Mkdisk -unit=k -size=51200 -fit=BF                # 50M B
+mkDisk -size=14 -unit=M                           # 13M C
+mkdisk -size=51200 -unit=K                        # 50M D
+mkDisk -size=20 -unit=M -fit=WF                   # 20M E
+
+#CREACION DE PARTICIONES---------------------------------------------------
+#DISCO 1
+fdisk -type=P -unit=b -name=Part1 -size=20971520 -driveletter=A -fit=BF # 20M
+fdisk -type=P -unit=k -name=Part2 -size=10240 -driveletter=A -fit=BF    # 10M
+fdisk -type=P -unit=M -name=Part3 -size=10 -driveletter=A -fit=BF       # 10M
+fdisk -type=P -unit=b -name=Part4 -size=10485760 -driveletter=A -fit=BF # 10M
+# LIBRE DISCO 1: 60-10-10-10-20 = 10 
+
+#DISCO 3
+fdisk -type=P -unit=m -name=Part26 -size=4 -driveletter=C     #4M
+fdisk -type=P -unit=m -name=Part27 -size=4 -driveletter=C     #4M
+fdisk -type=P -unit=m -name=Part28 -size=1 -driveletter=C     #1M
+#LIBRE DISCO 3: 14-9= 5 -> 35.71%
+
+#MONTAR PARTICIONES---------------------------------------------------
+#DISCO 1
+mount -driveletter=A -name=Part1 #A196 -> id1 -> cambiar el 191a por el ID que a ustedes les genera
+mount -driveletter=A -name=Part2 #A296 -> id2 -> cambiar el 191b por el ID que a ustedes les genera
+
+#DISCO 3
+mount -driveletter=C -name=Part26 #C196 -> id3 -> cambiar el 193a por el ID que a ustedes les genera
+
+#REPORTES 1---------------------------------------------------
+#DISCO 1
+rep -id=A196 -Path=reporte2. -name=disk #-> id1
+rep -id=A196 -Path=reporte3. -name=mbr #-> id1
+
+#DISCO 3
+rep -id=C196 -Path=reporte8.jpg -name=disk #-> id3
+rep -id=C196 -Path=reporte9.jpg -name=mbr #-> id3
+
+#CREACION DE SISTEMA DE ARCHIVOS------------------------------------------------
+mkfs -type=full -id=A196 -fs=2fs
+
+#LOGIN------------------------------------------------
+login -user=root -pass=123 -id=A196
+
+
+logout

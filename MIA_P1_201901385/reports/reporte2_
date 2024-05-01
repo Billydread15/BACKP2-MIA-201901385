@@ -1,0 +1,1 @@
+digraph D {subgraph cluster_0 {bgcolor="#68d9e2"node [style="rounded" style=filled];node_A [shape=record    label="MBR|{Primaria|{33.33%}}|{Primaria|{33.33%}}|{Primaria|{33.33%}}|{Primaria|{33.33%}}|{Libre|{-33.33333333333334%}}"];}}
